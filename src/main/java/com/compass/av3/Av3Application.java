@@ -12,5 +12,4 @@ public class Av3Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Av3Application.class, args);
 	}
-
 }

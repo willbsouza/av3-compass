@@ -1,4 +1,4 @@
-INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Pernambuco', 'NORDESTE', 9674793, 'Recife', 98067.880, '1537-03-12', 484);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Pernambuco', 'NORDESTE', 9674793, 'Recife', 98067.880, '1537-03-12', 485);
 INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Rio Grande do Norte', 'NORDESTE', 3560903, 'Natal', 52809.601, '1501-08-07', 520);
 INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('São Paulo', 'SUDESTE', 46649132, 'São Paulo', 248219.481, '1554-01-25', 468);
 INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Amazonas', 'NORTE', 4269995, 'Manaus', 1559167.878, '1850-09-05', 171);

@@ -14,8 +14,9 @@ import com.compass.av3.dto.StateAreaDTO;
 import com.compass.av3.dto.StatePopulacaoDTO;
 import com.compass.av3.dto.StateRegiaoDTO;
 import com.compass.av3.entity.State;
-import com.compass.av3.exception.DataTempoFundacaoException;
 import com.compass.av3.repository.StateRepository;
+import com.compass.av3.service.exception.DataTempoFundacaoException;
+import com.compass.av3.service.exception.EntityNotFoundException;
 
 @Service
 public class StateService {
@@ -38,11 +39,8 @@ public class StateService {
 	}
 
 	public State findById(Long id) {
-		Optional<State> optional = stateRepository.findById(id);
-		if (optional.isPresent()) {
-			return stateRepository.findById(id).get();
-		}
-		return null;
+		return stateRepository.findById(id).orElseThrow(
+				() -> new EntityNotFoundException("ID " + id + " não encontrado "));
 	}
 
 	public State save(State state) {
@@ -64,16 +62,16 @@ public class StateService {
 			stateParaAtualizar.setTempoDeFundacao(state.getTempoDeFundacao());
 			return stateParaAtualizar;
 		}
-		return null;
+		throw new EntityNotFoundException("ID " + id + " não encontrado ");
 	}
 	
-	public Boolean deleteById(Long id){
+	public void deleteById(Long id){
 		Optional<State> optional = stateRepository.findById(id);
 		if (optional.isPresent()) {
 			stateRepository.deleteById(id);
-			return true;
+		}else {
+			throw new EntityNotFoundException("ID " + id + " não encontrado ");			
 		}
-		return false;
 	}
 	
 	public List<StateRegiaoDTO> procurarPorRegiao(String nome){

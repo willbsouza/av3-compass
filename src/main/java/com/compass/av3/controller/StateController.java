@@ -26,63 +26,54 @@ import com.compass.av3.entity.State;
 import com.compass.av3.service.StateService;
 
 @RestController
-@RequestMapping("/api/states")
+@RequestMapping(value = "/api/states")
 public class StateController {
-	
+
 	@Autowired
 	private StateService stateService;
-	
+
 	@GetMapping
-	public ResponseEntity<List<State>> findAll(){
+	public ResponseEntity<List<State>> findAll() {
 		return ResponseEntity.ok(stateService.findAll());
 	}
-	
+
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<State> findById(@PathVariable Long id){
-		if(stateService.findById(id) != null) {
-			return ResponseEntity.ok(stateService.findById(id));
-		}
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<State> findById(@PathVariable Long id) {
+		return ResponseEntity.ok(stateService.findById(id));
 	}
-	
+
 	@GetMapping(path = "/regiao")
-	public ResponseEntity<List<StateRegiaoDTO>> procurarPorRegiao(@RequestParam String nome){
+	public ResponseEntity<List<StateRegiaoDTO>> procurarPorRegiao(@RequestParam String nome) {
 		return ResponseEntity.ok(stateService.procurarPorRegiao(nome));
 	}
-	
+
 	@GetMapping(path = "/populacao")
-	public ResponseEntity<List<StatePopulacaoDTO>> procurarMaioresPopulacoes(@RequestParam Integer valor){
+	public ResponseEntity<List<StatePopulacaoDTO>> procurarMaioresPopulacoes(@RequestParam Integer valor) {
 		return ResponseEntity.ok(stateService.procurarMaioresPopulacoes(valor));
 	}
-	
+
 	@GetMapping(path = "/area")
-	public ResponseEntity<List<StateAreaDTO>> procurarMaioresAreas(@RequestParam Double valor){
-		return ResponseEntity.ok(stateService.procurarMaioresAreas(valor));		
+	public ResponseEntity<List<StateAreaDTO>> procurarMaioresAreas(@RequestParam Double valor) {
+		return ResponseEntity.ok(stateService.procurarMaioresAreas(valor));
 	}
-	
+
 	@PostMapping
 	@Transactional
 	public ResponseEntity<State> save(@RequestBody @Valid State state, UriComponentsBuilder uriBuilder) {
-		URI uri = uriBuilder.path("/api/states/{id}").buildAndExpand(state.getId()).toUri();
-		return ResponseEntity.created(uri).body(stateService.save(state));
+			URI uri = uriBuilder.path("/api/states/{id}").buildAndExpand(state.getId()).toUri();
+			return ResponseEntity.created(uri).body(stateService.save(state));
 	}
-	
+
 	@PutMapping(path = "/{id}")
 	@Transactional
 	public ResponseEntity<State> updateById(@PathVariable Long id, @RequestBody @Valid State state) {
-		if(stateService.updateById(id, state) != null) {
 			return ResponseEntity.ok(stateService.updateById(id, state));
-		}
-		return ResponseEntity.notFound().build();
 	}
-	
+
 	@DeleteMapping(path = "/{id}")
 	@Transactional
-	public ResponseEntity<?> deleteById(@PathVariable Long id){
-		if (stateService.deleteById(id)) {
-			return ResponseEntity.noContent().build();
-		}
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<?> deleteById(@PathVariable Long id) {
+		stateService.deleteById(id);
+		return ResponseEntity.noContent().build();
 	}
 }
-
