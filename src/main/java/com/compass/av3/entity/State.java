@@ -43,8 +43,8 @@ public class State {
 	private LocalDate dataDeFundacao;
 	
 	@NotNull
-	@Column(name = "tempo_de_fundacao")
-	private Integer tempoDeFundacao;
+	@Column(name = "tempo_desde_fundacao")
+	private Integer tempoDesdeFundacao;
 	
 	public Long getId() {
 		return id;
@@ -88,10 +88,10 @@ public class State {
 	public void setDataDeFundacao(LocalDate dataDeFundacao) {
 		this.dataDeFundacao = dataDeFundacao;
 	}
-	public Integer getTempoDeFundacao() {
-		return tempoDeFundacao;
+	public Integer getTempoDesdeFundacao() {
+		return tempoDesdeFundacao;
 	}
-	public void setTempoDeFundacao(Integer tempoDeFundacao) {
-		this.tempoDeFundacao = tempoDeFundacao;
+	public void setTempoDesdeFundacao(Integer tempoDesdeFundacao) {
+		this.tempoDesdeFundacao = tempoDesdeFundacao;
 	}
 }

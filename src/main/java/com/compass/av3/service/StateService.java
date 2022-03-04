@@ -25,7 +25,7 @@ public class StateService {
 	private StateRepository stateRepository;
 
 	private void validarTempoFundacao(State state) {
-		Integer tempoFundacao = state.getTempoDeFundacao();
+		Integer tempoFundacao = state.getTempoDesdeFundacao();
 		LocalDate dataHoje = LocalDate.now();
 		LocalDate dataFundacao = state.getDataDeFundacao();
 		Period periodo = Period.between(dataFundacao, dataHoje);
@@ -59,10 +59,10 @@ public class StateService {
 			stateParaAtualizar.setCapital(state.getCapital());
 			stateParaAtualizar.setArea(state.getArea());
 			stateParaAtualizar.setDataDeFundacao(state.getDataDeFundacao());
-			stateParaAtualizar.setTempoDeFundacao(state.getTempoDeFundacao());
+			stateParaAtualizar.setTempoDesdeFundacao(state.getTempoDesdeFundacao());
 			return stateParaAtualizar;
 		}
-		throw new EntityNotFoundException("ID " + id + " não encontrado ");
+		throw new EntityNotFoundException("ID " + id + " não encontrado");
 	}
 	
 	public void deleteById(Long id){

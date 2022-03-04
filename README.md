@@ -13,7 +13,7 @@
 <li>capital : String</li>
 <li>area : Double</li>
 <li>dataDeFundacao : LocalDate</li>
-<li>tempoDeFundacao : Integer</li>
+<li>tempoDesdeFundacao : Integer</li>
 </ul>
 
 Endpoints: 
