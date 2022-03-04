@@ -1,0 +1,8 @@
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Pernambuco', 'NORDESTE', 9674793, 'Recife', 98067.880, '1537-03-12', 484);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Rio Grande do Norte', 'NORDESTE', 3560903, 'Natal', 52809.601, '1501-08-07', 520);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('São Paulo', 'SUDESTE', 46649132, 'São Paulo', 248219.481, '1554-01-25', 468);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Amazonas', 'NORTE', 4269995, 'Manaus', 1559167.878, '1850-09-05', 171);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Mato Grosso', 'CENTRO_OESTE', 3567234, 'Cuiabá', 903207.050, '1748-05-09', 273);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Rio Grande do Sul', 'SUL', 11466630, 'Porto Alegre', 281707.149, '1737-02-19', 285);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Rio de Janeiro', 'SUDESTE', 17463349, 'Rio de Janeiro', 43750.426, '1565-03-01', 457);
+INSERT INTO state(nome, regiao, populacao, capital, area, data_de_fundacao, tempo_de_fundacao) VALUES('Bahia', 'NORDESTE', 14985284, 'Salvador', 564760.427, '1549-03-29', 472);
