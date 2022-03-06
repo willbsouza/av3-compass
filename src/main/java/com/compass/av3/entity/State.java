@@ -2,7 +2,6 @@ package com.compass.av3.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.compass.av3.entity.enums.Regiao;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class State {
@@ -37,13 +35,10 @@ public class State {
 	@NotNull
 	private Double area;
 	
-	@Column(name = "data_de_fundacao")
-	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull
 	private LocalDate dataDeFundacao;
 	
 	@NotNull
-	@Column(name = "tempo_desde_fundacao")
 	private Integer tempoDesdeFundacao;
 	
 	public Long getId() {

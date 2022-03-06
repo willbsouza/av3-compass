@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +38,8 @@ public class StateService {
 	}
 
 	public State findById(Long id) {
-		return stateRepository.findById(id).orElseThrow(
-				() -> new EntityNotFoundException("ID " + id + " não encontrado "));
+		return stateRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("ID " + id + " não encontrado "));
 	}
 
 	public State save(State state) {
@@ -50,9 +49,8 @@ public class StateService {
 
 	public State updateById(Long id, State state) {
 		validarTempoFundacao(state);
-		Optional<State> optional = stateRepository.findById(id);
-		if (optional.isPresent()) {
-			State stateParaAtualizar = optional.get();
+		State stateParaAtualizar = findById(id);
+		if (stateParaAtualizar != null) {
 			stateParaAtualizar.setNome(state.getNome());
 			stateParaAtualizar.setRegiao(state.getRegiao());
 			stateParaAtualizar.setPopulacao(state.getPopulacao());
@@ -64,39 +62,32 @@ public class StateService {
 		}
 		throw new EntityNotFoundException("ID " + id + " não encontrado");
 	}
-	
-	public void deleteById(Long id){
-		Optional<State> optional = stateRepository.findById(id);
-		if (optional.isPresent()) {
+
+	public void deleteById(Long id) {
+		if (findById(id) != null) {
 			stateRepository.deleteById(id);
-		}else {
-			throw new EntityNotFoundException("ID " + id + " não encontrado ");			
 		}
 	}
-	
-	public List<StateRegiaoDTO> procurarPorRegiao(String nome){
+
+	public List<StateRegiaoDTO> procurarPorRegiao(String nome) {
 		List<StateRegiaoDTO> listaEstados = stateRepository.findAll().stream()
-				.filter(state -> state.getRegiao().equalsIgnoreCase(nome))
-				.map(StateRegiaoDTO::new)
+				.filter(state -> state.getRegiao().equalsIgnoreCase(nome)).map(StateRegiaoDTO::new)
 				.collect(Collectors.toList());
 		return listaEstados;
 	}
-	
-	public List<StatePopulacaoDTO> procurarMaioresPopulacoes(Integer valor){
-	List<StatePopulacaoDTO> listaPopulacoes = stateRepository.findAll().stream()
-			.filter(state -> state.getPopulacao() >= valor)
-			.sorted(Comparator.comparing(State::getPopulacao).reversed())
-			.map(StatePopulacaoDTO::new)
-			.collect(Collectors.toList());
-	return listaPopulacoes;
-	}
-	
-	public List<StateAreaDTO> procurarMaioresAreas(Double valor){
-		List<StateAreaDTO> listaAreas = stateRepository.findAll().stream()
-				.filter(state -> state.getArea() >= valor)
-				.sorted(Comparator.comparing(State::getArea).reversed())
-				.map(StateAreaDTO::new)
+
+	public List<StatePopulacaoDTO> procurarMaioresPopulacoes(Integer valor) {
+		List<StatePopulacaoDTO> listaPopulacoes = stateRepository.findAll().stream()
+				.filter(state -> state.getPopulacao() >= valor)
+				.sorted(Comparator.comparing(State::getPopulacao).reversed()).map(StatePopulacaoDTO::new)
 				.collect(Collectors.toList());
-		return listaAreas;	
+		return listaPopulacoes;
+	}
+
+	public List<StateAreaDTO> procurarMaioresAreas(Double valor) {
+		List<StateAreaDTO> listaAreas = stateRepository.findAll().stream().filter(state -> state.getArea() >= valor)
+				.sorted(Comparator.comparing(State::getArea).reversed()).map(StateAreaDTO::new)
+				.collect(Collectors.toList());
+		return listaAreas;
 	}
 }

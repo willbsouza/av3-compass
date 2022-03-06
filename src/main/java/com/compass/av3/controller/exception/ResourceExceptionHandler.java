@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.compass.av3.service.exception.DataTempoFundacaoException;
 import com.compass.av3.service.exception.EntityNotFoundException;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ResourceExceptionHandler {
 
 	@ExceptionHandler(DataTempoFundacaoException.class)
@@ -27,7 +27,7 @@ public class ResourceExceptionHandler {
 	}
 	
 	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<StandardError> dataTempoFundacao(EntityNotFoundException e, HttpServletRequest request){
+	public ResponseEntity<StandardError> objetoNaoEncontrado(EntityNotFoundException e, HttpServletRequest request){
 		StandardError erro = new StandardError();
 		erro.setTimestamp(Instant.now());
 		erro.setStatus(HttpStatus.NOT_FOUND.value());
